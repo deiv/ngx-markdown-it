@@ -7,7 +7,7 @@ An Angular library that renders markdown using [markdown-it](https://github.com/
 Use your favorite package manager to install ngx-markdown-it. For example, with NPM:
 
 ```bash
-npm install ngx-markdown
+npm install ngx-markdown-it
 ```
 
 Don't forget to install [markdown-it](https://github.com/markdown-it/markdown-it) too:
