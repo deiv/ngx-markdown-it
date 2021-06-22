@@ -1,6 +1,14 @@
 {
   "name": "ngx-markdown-it",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "keywords": [
+    "angular",
+    "angular-module",
+    "markdown-it",
+    "markdown"
+  ],
+  "repository": "https://github.com/deiv/ngx-markdown-it.git",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^12.0.5",
     "@angular/core": "^12.0.5",
