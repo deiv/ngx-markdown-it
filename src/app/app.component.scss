@@ -1,0 +1,28 @@
+
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: mediumslateblue;
+}
+
+.xpand-textarea {
+  border-radius: 5px;
+  padding: 0.4em;
+  resize: vertical;
+}
+
+markdown-it {
+  padding: 0.4em;
+}
+
+.demo-container {
+  display: flex;
+}
+
+.demo-container * {
+  width: 49%;
+}
+
+

@@ -1,27 +1,100 @@
-# NgxMarkdownItDemo
+# ngx-markdown-it
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+An Angular library that renders markdown using [markdown-it](https://github.com/markdown-it/markdown-it).
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Use your favorite package manager to install ngx-markdown-it. For example, with NPM:
 
-## Code scaffolding
+```bash
+npm install ngx-markdown
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Don't forget to install [markdown-it](https://github.com/markdown-it/markdown-it) too:
 
-## Build
+```bash
+npm install markdown-it
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Configuration
 
-## Running unit tests
+As usual, with Angular, you must import the module inside your main application:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```javascript
+import { NgxMarkdownItModule } from "ngx-markdown-it";
 
-## Running end-to-end tests
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    NgxMarkdownItModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: []
+})
+export class AppModule { }
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Optionally, you can pass a NgxMarkdownItConfig class to the module, to allow to configure the markdown-it library. For example, to use the [markdown-it-markmap](https://github.com/deiv/markdown-it-markmap) plugin:
 
-## Further help
+```javascript
+import { NgxMarkdownItModule } from "ngx-markdown-it";
+import { NgxMarkdownItConfig } from "ngx-markdown-it";
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+import { default as markmapPlugin } from 'markdown-it-markmap';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    NgxMarkdownItModule.forRoot({
+      plugins: [
+        markmapPlugin
+      ]
+    })
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+## Usage
+
+The module provides a component and a service.
+
+### markdown-it component
+
+A simple component to render the mardown.
+
+```html
+<markdown-it [markdown]="markdown"></markdown-it>
+```
+
+```html
+<markdown-it ngPreserveWhitespaces># A level 1 header</markdown-it>
+```
+
+### markdown-it service
+
+A service to allow more advanced usage of the markdown-it parser.
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { NgxMarkdownItService } from 'ngx-markdown-it';
+
+@Component({ ... })
+export class Foo implements OnInit {
+  constructor(private markdownItService: NgxMarkdownItService) { }
+
+  ngOnInit() {
+    console.log(this.markdownItService.render('# A level 1 header'));
+  }
+}
+```
+
+## Development
+
+The library is located in _projects/ngx-markdown-it_. The root app is only a demo to test the library.
