@@ -2,6 +2,8 @@
 
 An Angular library that renders markdown using [markdown-it](https://github.com/markdown-it/markdown-it).
 
+You can try online [@StackBlitz](https://stackblitz.com/edit/ngx-markdown-it).
+
 ## Installation
 
 Use your favorite package manager to install ngx-markdown-it. For example, with NPM:
