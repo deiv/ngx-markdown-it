@@ -1,6 +1,6 @@
 {
   "name": "ngx-markdown-it-demo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,7 +20,7 @@
     "@angular/router": "~12.0.5",
     "markdown-it": "^12.0.6",
     "markdown-it-markmap": "^0.1.0",
-    "ngx-markdown": "file:./projects/ngx-markdown-it",
+    "ngx-markdown-it": "file:./projects/ngx-markdown-it",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
