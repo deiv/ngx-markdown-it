@@ -60,7 +60,7 @@ export class NgxMarkdownItModule {
     }
   }
 
-  static forRoot(config: NgxMarkdownItConfig): ModuleWithProviders<NgxMarkdownItModule> {
+  static forRoot(config?: NgxMarkdownItConfig): ModuleWithProviders<NgxMarkdownItModule> {
     return {
       ngModule: NgxMarkdownItModule,
       providers: [{

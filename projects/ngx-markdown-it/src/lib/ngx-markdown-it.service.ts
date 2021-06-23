@@ -38,7 +38,7 @@ import { Injectable, Optional } from '@angular/core';
 
 import { NgxMarkdownItConfig } from "./ngx-markdown-it-config.class";
 
-import * as MarkdownIt from 'markdown-it';
+import MarkdownIt from 'markdown-it';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +53,6 @@ export class NgxMarkdownItService {
 
     if (config && config.presetName) {
       presetName = config.presetName;
-
     }
 
     this.markdownIt = new MarkdownIt(presetName);

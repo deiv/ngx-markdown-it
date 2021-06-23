@@ -28,7 +28,7 @@ import { NgxMarkdownItModule } from "ngx-markdown-it";
     AppComponent
   ],
   imports: [
-    NgxMarkdownItModule.forRoot()
+    NgxMarkdownItModule
   ],
   providers: [],
   bootstrap: []
