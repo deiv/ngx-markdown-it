@@ -1,6 +1,6 @@
 import {Component, VERSION, ViewChild} from '@angular/core';
 
-import * as packageInfo from '../../projects/ngx-markdown-it/package.json';
+import * as packageInfo from '../../lib/ngx-markdown-it/package.json';
 
 import { NgxMarkdownItService } from "ngx-markdown-it";
 import { NgxMarkdownItComponent } from "ngx-markdown-it/src/lib/ngx-markdown-it.component";

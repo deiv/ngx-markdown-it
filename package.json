@@ -20,7 +20,7 @@
     "@angular/router": "^16.2.0",
     "markdown-it": "^13.0.2",
     "markdown-it-markmap": "^0.1.0",
-    "ngx-markdown-it": "file:./projects/ngx-markdown-it",
+    "ngx-markdown-it": "file:./lib/ngx-markdown-it",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
