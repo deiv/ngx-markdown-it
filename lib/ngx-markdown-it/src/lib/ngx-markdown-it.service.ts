@@ -65,7 +65,7 @@ export class NgxMarkdownItService {
   /**
    * Renders a markdown string to HTML
    *
-   * @param {markdown} raw Markdown string that you want to render.
+   * @param {string} markdown Markdown string that you want to render.
    * @returns {string}
    */
   public render(markdown: string): string {

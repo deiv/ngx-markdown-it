@@ -40,7 +40,6 @@ import { NgxMarkdownItComponent } from './ngx-markdown-it.component';
 import { NgxMarkdownItService } from "./ngx-markdown-it.service";
 import { NgxMarkdownItConfig } from "./ngx-markdown-it-config.class";
 
-
 @NgModule({
   declarations: [
     NgxMarkdownItComponent
