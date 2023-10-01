@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/.angular
 # Only exists if Bazel was run
 /bazel-out
 
@@ -15,6 +16,7 @@ chrome-profiler-events*.json
 
 # IDEs and editors
 /.idea
+**/.idea
 .project
 .classpath
 .c9/
