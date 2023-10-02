@@ -99,4 +99,10 @@ export class Foo implements OnInit {
 
 ## Development
 
-The library is located in _projects/ngx-markdown-it_. The root app is only a demo to test the library.
+The library is located in `projects/ngx-markdown-it`. The root app is only a demo to test the library.
+
+To build the library run:
+```sh
+cd lib/ngx-markdown-it && npm i
+ng build ngx-markdown-it # can be ran from the root dir, no need to cd into the lib dir
+```

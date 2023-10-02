@@ -1,7 +1,7 @@
 /*
- * @file ngx-markdown-it.module.ts
+ * @file ngx-markdown-it.service.ts
  *
- * @brief Library module
+ * @brief Markdown It service
  * @author David Suárez
  * @date Mon, 21 Jun 20 19:45:15 +0200
  *
@@ -34,41 +34,41 @@
  *
  */
 
-import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 
-import { NgxMarkdownItComponent } from './ngx-markdown-it.component';
-import { NgxMarkdownItService } from "./ngx-markdown-it.service";
 import { NgxMarkdownItConfig } from "./ngx-markdown-it-config.class";
 
+import MarkdownIt from 'markdown-it';
 
-@NgModule({
-  declarations: [
-    NgxMarkdownItComponent
-  ],
-  imports: [
-  ],
-  exports: [
-    NgxMarkdownItComponent
-  ]
+@Injectable({
+  providedIn: 'root'
 })
-export class NgxMarkdownItModule {
+export class NgxMarkdownItService {
 
-  constructor(@Optional() @SkipSelf() parentModule?: NgxMarkdownItModule) {
-    if (parentModule) {
-      throw new Error(
-        'NgxMarkdownItModule is already loaded. Import it in the AppModule only');
+  private markdownIt: MarkdownIt;
+
+  constructor(@Optional() config?: NgxMarkdownItConfig) {
+
+    var presetName : MarkdownIt.PresetName = 'default';
+
+    if (config && config.presetName) {
+      presetName = config.presetName;
+    }
+
+    this.markdownIt = new MarkdownIt(presetName);
+
+    if (config && config.plugins) {
+        config.plugins.forEach(plugin => this.markdownIt.use(plugin));
     }
   }
 
-  static forRoot(config?: NgxMarkdownItConfig): ModuleWithProviders<NgxMarkdownItModule> {
-    return {
-      ngModule: NgxMarkdownItModule,
-      providers: [{
-          provide: NgxMarkdownItConfig,
-          useValue: config
-        }
-      ]
-    };
+  /**
+   * Renders a markdown string to HTML
+   *
+   * @param {string} markdown Markdown string that you want to render.
+   * @returns {string}
+   */
+  public render(markdown: string): string {
+    return `${this.markdownIt.render(markdown)}`;
   }
 }
-

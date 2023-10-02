@@ -1,7 +1,7 @@
 /*
- * @file ngx-markdown-it.service.ts
+ * @file ngx-markdown-it.module.ts
  *
- * @brief Markdown It service
+ * @brief Library module
  * @author David Suárez
  * @date Mon, 21 Jun 20 19:45:15 +0200
  *
@@ -34,41 +34,40 @@
  *
  */
 
-import { Injectable, Optional } from '@angular/core';
+import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 
+import { NgxMarkdownItComponent } from './ngx-markdown-it.component';
+import { NgxMarkdownItService } from "./ngx-markdown-it.service";
 import { NgxMarkdownItConfig } from "./ngx-markdown-it-config.class";
 
-import MarkdownIt from 'markdown-it';
-
-@Injectable({
-  providedIn: 'root'
+@NgModule({
+  declarations: [
+    NgxMarkdownItComponent
+  ],
+  imports: [
+  ],
+  exports: [
+    NgxMarkdownItComponent
+  ]
 })
-export class NgxMarkdownItService {
+export class NgxMarkdownItModule {
 
-  private markdownIt: MarkdownIt;
-
-  constructor(@Optional() config?: NgxMarkdownItConfig) {
-
-    var presetName : MarkdownIt.PresetName = 'default';
-
-    if (config && config.presetName) {
-      presetName = config.presetName;
-    }
-
-    this.markdownIt = new MarkdownIt(presetName);
-
-    if (config && config.plugins) {
-        config.plugins.forEach(plugin => this.markdownIt.use(plugin));
+  constructor(@Optional() @SkipSelf() parentModule?: NgxMarkdownItModule) {
+    if (parentModule) {
+      throw new Error(
+        'NgxMarkdownItModule is already loaded. Import it in the AppModule only');
     }
   }
 
-  /**
-   * Renders a markdown string to HTML
-   *
-   * @param {markdown} raw Markdown string that you want to render.
-   * @returns {string}
-   */
-  public render(markdown: string): string {
-    return `${this.markdownIt.render(markdown)}`;
+  static forRoot(config?: NgxMarkdownItConfig): ModuleWithProviders<NgxMarkdownItModule> {
+    return {
+      ngModule: NgxMarkdownItModule,
+      providers: [{
+          provide: NgxMarkdownItConfig,
+          useValue: config
+        }
+      ]
+    };
   }
 }
+

@@ -1,9 +1,9 @@
 import {Component, VERSION, ViewChild} from '@angular/core';
 
-import * as packageInfo  from '../../projects/ngx-markdown-it/package.json';
+import * as packageInfo from 'ngx-markdown-it/package.json';
 
 import { NgxMarkdownItService } from "ngx-markdown-it";
-import { NgxMarkdownItComponent } from "../../projects/ngx-markdown-it/src/lib/ngx-markdown-it.component";
+import { NgxMarkdownItComponent } from "ngx-markdown-it";
 
 import { markmap as MarkmapView } from 'markmap-lib/dist/view';
 

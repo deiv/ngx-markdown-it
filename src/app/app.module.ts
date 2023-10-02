@@ -20,7 +20,7 @@ import { default as markmapPlugin } from 'markdown-it-markmap';
       plugins: [
         markmapPlugin
       ]
-    })
+    } as NgxMarkdownItConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
