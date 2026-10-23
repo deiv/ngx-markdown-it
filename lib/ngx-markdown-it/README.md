@@ -18,6 +18,19 @@ Don't forget to install [markdown-it](https://github.com/markdown-it/markdown-it
 npm install markdown-it
 ```
 
+## Security
+
+The component inserts the rendered HTML with `innerHTML`, so Angular's built-in `[innerHTML]` sanitization does not run. With the default preset markdown-it escapes raw HTML, but the `"commonmark"` preset (and some plugins) let raw HTML such as `<img onerror=...>` through. If the markdown can come from users, enable sanitization:
+
+```javascript
+NgxMarkdownItModule.forRoot({
+  presetName: 'commonmark',
+  sanitize: true,
+} as NgxMarkdownItConfig)
+```
+
+Angular's sanitizer removes SVG and inline styles, so leave `sanitize` off for plugins that output SVG (such as markdown-it-markmap) and only use them with trusted content.
+
 ## Configuration
 
 As usual, with Angular, you must import the module inside your main application:

@@ -34,7 +34,8 @@
  *
  */
 
-import { Component, AfterViewInit, EventEmitter, ElementRef, Input, Output } from '@angular/core';
+import { Component, AfterViewInit, EventEmitter, ElementRef, Input, Output, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { NgxMarkdownItService } from "./ngx-markdown-it.service";
 
@@ -58,6 +59,7 @@ export class NgxMarkdownItComponent implements AfterViewInit  {
   constructor(
     public element: ElementRef<HTMLElement>,
     private markdownService: NgxMarkdownItService,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngAfterViewInit(): void {
@@ -76,7 +78,11 @@ export class NgxMarkdownItComponent implements AfterViewInit  {
   }
 
   render(markdown: string): void {
-    this.element.nativeElement.innerHTML = this.markdownService.render(markdown);
+    const html = this.markdownService.render(markdown);
+    // innerHTML bypasses Angular's template sanitization, so sanitize here when the app asked for it.
+    this.element.nativeElement.innerHTML = this.markdownService.sanitize
+      ? this.sanitizer.sanitize(SecurityContext.HTML, html) ?? ''
+      : html;
     this.ready.emit();
   }
 }

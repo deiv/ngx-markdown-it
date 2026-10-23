@@ -47,6 +47,9 @@ export class NgxMarkdownItService {
 
   private markdownIt: MarkdownIt;
 
+  /** Whether rendered HTML is sanitized before insertion (see NgxMarkdownItConfig.sanitize). */
+  readonly sanitize: boolean;
+
   constructor(@Optional() config?: NgxMarkdownItConfig) {
 
     var presetName : MarkdownIt.PresetName = 'default';
@@ -56,6 +59,7 @@ export class NgxMarkdownItService {
     }
 
     this.markdownIt = new MarkdownIt(presetName);
+    this.sanitize = !!(config && config.sanitize);
 
     if (config && config.plugins) {
         config.plugins.forEach(plugin => this.markdownIt.use(plugin));
