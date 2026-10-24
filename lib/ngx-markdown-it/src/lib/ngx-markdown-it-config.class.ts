@@ -51,4 +51,16 @@ export class NgxMarkdownItConfig {
    * Plugins to apply.
    */
   plugins?: any[];
+
+  /**
+   * Run the rendered HTML through Angular's DomSanitizer before it is inserted into the page.
+   *
+   * The component writes to innerHTML directly, so Angular's usual [innerHTML] sanitization does not apply. Turn
+   * this on whenever the markdown can come from users and raw HTML can reach the output (for example with the
+   * "commonmark" preset, which enables markdown-it's html option, or plugins that emit HTML). Note that Angular's
+   * sanitizer removes SVG and inline styles, so plugins that output SVG (such as markdown-it-markmap) need it off.
+   *
+   * Default: false (unchanged behaviour).
+   */
+  sanitize?: boolean;
 };
