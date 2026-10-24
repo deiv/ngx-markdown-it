@@ -1,13 +1,16 @@
 {
   "name": "ngx-markdown-it",
-  "version": "16.0.1",
+  "version": "16.1.1",
   "keywords": [
     "angular",
     "angular-module",
     "markdown-it",
     "markdown"
   ],
-  "repository": "https://github.com/deiv/ngx-markdown-it.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deiv/ngx-markdown-it.git"
+  },
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^16.2.0",
