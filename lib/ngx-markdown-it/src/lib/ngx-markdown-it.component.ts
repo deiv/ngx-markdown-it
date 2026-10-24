@@ -3,13 +3,13 @@
  *
  * @brief Component to render markdown to html
  * @author David Suárez
- * @date Mon, 21 Jun 20 19:45:15 +0200
+ * @date Sat, 24 Oct 2026 20:28:47 +0200
  *
  * @license
  *
  * ngx-markdown-it: angular markdown-it module
  *
- * Copyright (c) 2021 David Suárez
+ * Copyright (c) 2026 David Suárez
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,8 +34,7 @@
  *
  */
 
-import { Component, AfterViewInit, EventEmitter, ElementRef, Input, Output, SecurityContext } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, AfterViewInit, EventEmitter, ElementRef, Input, Output } from '@angular/core';
 
 import { NgxMarkdownItService } from "./ngx-markdown-it.service";
 
@@ -59,7 +58,6 @@ export class NgxMarkdownItComponent implements AfterViewInit  {
   constructor(
     public element: ElementRef<HTMLElement>,
     private markdownService: NgxMarkdownItService,
-    private sanitizer: DomSanitizer,
   ) { }
 
   ngAfterViewInit(): void {
@@ -78,11 +76,8 @@ export class NgxMarkdownItComponent implements AfterViewInit  {
   }
 
   render(markdown: string): void {
-    const html = this.markdownService.render(markdown);
-    // innerHTML bypasses Angular's template sanitization, so sanitize here when the app asked for it.
-    this.element.nativeElement.innerHTML = this.markdownService.sanitize
-      ? this.sanitizer.sanitize(SecurityContext.HTML, html) ?? ''
-      : html;
+    // innerHTML bypasses Angular's template sanitization, the service will do it if configured.
+    this.element.nativeElement.innerHTML = this.markdownService.render(markdown);
     this.ready.emit();
   }
 }

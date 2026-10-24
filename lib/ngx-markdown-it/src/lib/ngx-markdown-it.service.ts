@@ -3,13 +3,13 @@
  *
  * @brief Markdown It service
  * @author David Suárez
- * @date Mon, 21 Jun 20 19:45:15 +0200
+ * @date Sat, 24 Oct 2026 20:28:47 +0200
  *
  * @license
  *
  * ngx-markdown-it: angular markdown-it module
  *
- * Copyright (c) 2021 David Suárez
+ * Copyright (c) 2026 David Suárez
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -34,7 +34,8 @@
  *
  */
 
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, Optional, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { NgxMarkdownItConfig } from "./ngx-markdown-it-config.class";
 
@@ -50,7 +51,7 @@ export class NgxMarkdownItService {
   /** Whether rendered HTML is sanitized before insertion (see NgxMarkdownItConfig.sanitize). */
   readonly sanitize: boolean;
 
-  constructor(@Optional() config?: NgxMarkdownItConfig) {
+  constructor(private sanitizer: DomSanitizer, @Optional() config?: NgxMarkdownItConfig) {
 
     var presetName : MarkdownIt.PresetName = 'default';
 
@@ -73,6 +74,11 @@ export class NgxMarkdownItService {
    * @returns {string}
    */
   public render(markdown: string): string {
-    return `${this.markdownIt.render(markdown)}`;
+    let html = `${this.markdownIt.render(markdown)}`;
+
+    // sanitize here when the app asked for it.
+    return this.sanitize
+      ? this.sanitizer.sanitize(SecurityContext.HTML, html) ?? ''
+      : html;
   }
 }
